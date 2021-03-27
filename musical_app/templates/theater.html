@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Theater Index
+{% endblock %}
+
+{% block lead %}
+Add or delete theater list
+{% endblock %}
+
+{% block main_body %}
+<form method="POST" action="/api/theater">
+  <input name="theaterid" style="margin-bottom:10px" class="form-control" type="text" placeholder="Enter theater name">
+  <input type="submit" class="btn btn-primary" value="Add" />
+</form>
+
+{% if theater_list %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for theater in theater_list %}
+    <tr>
+      <th scope="row">{{ theater.id }}</th>
+      <td>{{ theater.name }}</td>
+      <td>
+        <a class="btn btn-secondary", href='/api/theater/{{ theater.id }}'>
+          Delete
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

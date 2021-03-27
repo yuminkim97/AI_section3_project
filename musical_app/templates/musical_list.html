@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title  %}
+Musical List on the select theater
+{% endblock  %}
+
+{% block main_body  %}
+<form method="POST" action="/musical">
+  <div class="form-group">
+    <label for="exampleFormControlSelect">Choose Theater</label>
+    <select name="theater" class="form-control" id="exampleFormControlSelect">
+      {% for theater in theaters %}
+      <option value={{theater.id}}>{{theater.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Search" />
+</form>
+
+{% if musical_list %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">Runtime</th>
+      <th scope="col">Showtime</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Price</th>
+      <!-- <th scope="col">Casting</th> -->
+      <th scope="col">URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for musical in musical_list %}
+    <tr>
+      <th scope="row">{{ musical.id }}</th>
+      <td>{{ musical.title }}</td>
+      <td>{{ musical.start }}</td>
+      <td>{{ musical.end }}</td>
+      <td>{{ musical.runtime }}</td>
+      <td>{{ musical.showtime }}</td>
+      <td>{{ musical.rating }}</td>
+      <td>{{ musical.price }}</td>
+      <!-- <td>{{ musical.casting }}</td> -->
+      <td>{{ musical.url }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+<!-- {% if musical %}
+<p>'{{musical.title}}' '{{musical.start}}' '{{musical.end}}' '{{musical.runtime}}'</p>
+<p>'{{musical.showtime}}' '{{musical.rating}}' '{{musical.price}}' '{{musical.casting}}' '{{musical.url}}'</p>
+{% endif %} -->
+{% endblock  %}
