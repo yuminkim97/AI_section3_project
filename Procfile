@@ -1,1 +1,1 @@
-web: gunicorn --workers=2 'musical_app:create_app()'
+web: gunicorn --workers=1 'musical_app:create_app()'

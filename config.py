@@ -21,9 +21,9 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
 
-class StagingConfig(Config):
-    DEVELOPMENT = True
-    DEBUG = True
+# class StagingConfig(Config):
+#     DEVELOPMENT = True
+#     DEBUG = True
 
-class TestingConfig(Config):
-    TESTING = True
+# class TestingConfig(Config):
+#     TESTING = True

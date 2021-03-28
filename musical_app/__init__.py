@@ -12,7 +12,7 @@ def create_app(config=None):
 
     if app.config["ENV"] == 'production':
         app.config.from_object('config.ProductionConfig')
-    elif app.config["ENV"] == 'development':
+    else:
         app.config.from_object('config.DevelopmentConfig')
 
     if config is not None:
