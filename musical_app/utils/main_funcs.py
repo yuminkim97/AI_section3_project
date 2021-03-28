@@ -1,41 +1,28 @@
-import datetime
-from musical_app.services.musical_api import get_musical_list, get_musical_info
-from musical_app.models.musical_model import db, Musical
-from musical_app.models.theater_model import Theater
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import f1_score
 
-def search_by_date(chosen_date=datetime.datetime.strptime('2020-09-04', '%Y-%m-%d').date()):
+from musical_app.services.musical_api import get_musical_info, get_musical_list
+
+def recommend(user_info):
     musical_list = get_musical_list()
+    user_info_df = pd.DataFrame(user_info, index = [0])
+    pred_proba = []
 
-    today_musical = []
-    for musical in musical_list:
-        start_date = datetime.datetime.strptime(musical['op_st_dt'], '%Y-%m-%d').date()
-        end_date = datetime.datetime.strptime(musical['op_ed_dt'], '%Y-%m-%d').date()
-        if start_date<=chosen_date and end_date>=chosen_date:
-            today_musical.append(musical)
+    for musical in musical_list :
+        num = musical['res_no']
 
-    if today_musical == None:
-        return "We're so sorry. There is no musical on the {chosen_date}"
-    else :
-        return today_musical
+        df = pd.read_csv(f'musical_app/dataset/df_{num}.csv')
+        labels = df['satisfy']
+        data = df.iloc[:,:-1]
 
+        classifier = LogisticRegression()
+        classifier.fit(data, labels)
 
-def musical_info_by_title(musical_title):
-    musical_list = get_musical_list()
+        prediction = classifier.predict_proba(user_info_df)
+        pred_proba.append({'res_no':num, 'pred':prediction[0][1]})
 
-    for musical in musical_list:
-        if musical['title'] == musical_title:
-            search_musical = musical
-            break
-
-    res_no = search_musical['res_no']
-
-    musical_info = get_musical_info(res_no)
-
-    return musical_info
-
-
-def musical_list_by_theater(theater):
-
-
-
-    return musical_list
+    best_result = max(pred_proba, key=lambda x:x['pred'])
+    return best_result['res_no']
+    #어떤 요소가 가장 많이 작용했는지도 출력하면 좋을 듯

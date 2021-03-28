@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Recommend Index
+{% endblock %}
+
+{% block lead %}
+뮤지컬 추천 페이지
+{% endblock %}
+
+{% block main_body %}
+<form method="POST" action="/recommend">
+  <input name="gender" style="margin-bottom:10px" class="form-control" type="text" placeholder="남자:1, 여자:2">
+  <input name="age" style="margin-bottom:10px" class="form-control" type="text" placeholder="나이">
+  <input name="experience" style="margin-bottom:10px" class="form-control" type="text" placeholder="뮤지컬 관람 경험 여부) No:0, Yes:1">
+  <input name="accompany" style="margin-bottom:10px" class="form-control" type="text" placeholder="동행) 0:혼자, 1:친구와 함께, 2:연인과 함께, 3:가족과 함께">
+  <input type="submit" class="btn btn-primary" value="Search" />
+</form>
+
+{% if musical_info %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Start</th>
+      <th scope="col">End</th>
+      <th scope="col">Runtime</th>
+      <th scope="col">Showtime</th>
+      <th scope="col">Rating</th>
+      <th scope="col">Price</th>
+      <th scope="col">Theater</th>
+      <th scope="col">URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ musical_info['title'] }}</th>
+      <td>{{ musical_info['op_st_dt'] }}</td>
+      <td>{{ musical_info['op_ed_dt'] }}</td>
+      <td>{{ musical_info['runtime'] }}</td>
+      <td>{{ musical_info['showtime'] }}</td>
+      <td>{{ musical_info['rating'] }}</td>
+      <td>{{ musical_info['price'] }}</td>
+      <td>{{ musical_info['place_nm'] }}</td>
+      <td>{{ musical_info['url'] }}</td>
+    </tr>
+  </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

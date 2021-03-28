@@ -1,7 +1,11 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-# DATABASE_URL='postgres://mdlklips:3RV4qozF-rLqMXISM9TCGldcNCKySSBN@john.db.elephantsql.com:5432/mdlklips'
+'''
+export FLASK_APP=musical_app
+export DATABASE_URL='postgres://mdlklips:3RV4qozF-rLqMXISM9TCGldcNCKySSBN@john.db.elephantsql.com:5432/mdlklips'
+export FLASK_ENV=development
+'''
 
 class Config(object):
     DEBUG = False

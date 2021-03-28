@@ -57,3 +57,26 @@ def date_index():
                 musical_info_list.append(musical_api.get_musical_info(musical['res_no']))
             
     return render_template('date.html', musical_info_list=musical_info_list, search_text=search_text)
+
+
+@bp.route('/recommend', methods=["GET", "POST"])
+def recommend_index():
+    musical_info = {}
+    
+    if request.method == "POST" :
+        try :
+            user_info = {
+                'gender':request.form.get('gender'),
+                'age':request.form.get('age'),
+                'experience':request.form.get('experience'),
+                'accompany':request.form.get('accompany'),
+            }
+
+        except :
+            return "Need proper information form", 400
+
+        res_no = main_funcs.recommend(user_info)
+
+        musical_info = musical_api.get_musical_info(res_no)
+            
+    return render_template('recommend.html', musical_info=musical_info)
