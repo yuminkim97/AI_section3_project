@@ -62,6 +62,7 @@ def date_index():
 @bp.route('/recommend', methods=["GET", "POST"])
 def recommend_index():
     musical_info = {}
+    user_info = {}
     
     if request.method == "POST" :
         try :
@@ -79,4 +80,4 @@ def recommend_index():
 
         musical_info = musical_api.get_musical_info(res_no)
             
-    return render_template('recommend.html', musical_info=musical_info)
+    return render_template('recommend.html', user_info=user_info, musical_info=musical_info)

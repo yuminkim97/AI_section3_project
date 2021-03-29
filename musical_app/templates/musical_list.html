@@ -21,21 +21,6 @@ Search the list of musicals available at the selected theater
         <button class="btn btn-outline-secondary" type="submit">Search</label>
       </div>
     </div>
-  <!-- 
-    <div class="input-group mb-3">
-      <div class="form-group">
-        <label for="exampleFormControlSelect">Choose Theater</label>
-        <select name="theater" class="form-control" id="exampleFormControlSelect">
-          {% for theater in theaters %}
-          <option value={{theater.id}}>{{theater.name}}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-      </div>
-  </div>
-    <input type="submit" class="btn btn-primary" value="Search" /> -->
   </form>
 </div>
 
@@ -72,8 +57,4 @@ Search the list of musicals available at the selected theater
 </table>
 {% endif %}
 
-<!-- {% if musical %}
-<p>'{{musical.title}}' '{{musical.start}}' '{{musical.end}}' '{{musical.runtime}}'</p>
-<p>'{{musical.showtime}}' '{{musical.rating}}' '{{musical.price}}' '{{musical.casting}}' '{{musical.url}}'</p>
-{% endif %} -->
 {% endblock  %}
