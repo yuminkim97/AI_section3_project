@@ -1,20 +1,92 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Recommend Index
+Musical Recommend Page
 {% endblock %}
 
 {% block lead %}
-뮤지컬 추천 페이지
+Recommend musical performance by analyze your information
 {% endblock %}
 
 {% block main_body %}
-<form method="POST" action="/recommend">
+<!-- <form method="POST" action="/recommend">
   <input name="gender" style="margin-bottom:10px" class="form-control" type="text" placeholder="남자:1, 여자:2">
   <input name="age" style="margin-bottom:10px" class="form-control" type="text" placeholder="나이">
   <input name="experience" style="margin-bottom:10px" class="form-control" type="text" placeholder="뮤지컬 관람 경험 여부) No:0, Yes:1">
   <input name="accompany" style="margin-bottom:10px" class="form-control" type="text" placeholder="동행) 0:혼자, 1:친구와 함께, 2:연인과 함께, 3:가족과 함께">
   <input type="submit" class="btn btn-primary" value="Search" />
+</form> -->
+
+<form method="POST" action="/recommend">
+  <div class="input-group mb-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <label>Gender</label>
+          <select name="gender" class="custom-select">
+            <option value=1>Male</option>
+            <option value=2>Female</option>
+          </select>
+        </div>
+        <div class="col-sm">
+          <label>Age</label>
+          <input name="age" style="margin-bottom:10px" class="form-control" type="text">
+        </div>
+        <div class="col-sm">
+          <label>Experience Watching Musicals</label>
+          <select name="experience" class="custom-select">
+            <option value=1>I have</option>
+            <option value=0>I don't have</option>
+          </select>
+        </div>
+        <div class="col-sm">
+          <label>Accompany</label>
+          <select name="accompany" class="custom-select">
+            <option value=0>Alone</option>
+            <option value=1>With Friend</option>
+            <option value=2>With Lover</option>
+            <option value=3>With Family</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- <label>Gender</label>
+      <select name="gender" class="custom-select" style="width:3px;"">
+        <option value=1>Male</option>
+        <option value=2>Female</option>
+      </select>
+    
+
+    <td>
+      <label>Age</label>
+      <input name="age" style="margin-bottom:10px" class="form-control" type="text" placeholder="나이">
+    </td>
+
+    <td>
+      <label>Experience Watching Musicals</label>
+      <select name="experience" class="custom-select">
+        <option value=1>I have</option>
+        <option value=0>I don't have</option>
+      </select>
+    </td>
+
+    <td>
+      <label>Accompany</label>
+      <select name="accompany" class="custom-select">
+        <option value=0>Alone</option>
+        <option value=1>With Friend</option>
+        <option value=2>With Lover</option>
+        <option value=3>With Family</option>
+      </select>
+    </td>
+
+    <td><input type="submit" class="btn btn-outline-secondary" value="Predict" /></td> -->
+
+    </div>    
+  </div>
+  <div class="row justify-content-center">
+    <button type="submit" class="btn btn-outline-secondary">Predict</button>
+  </div>
 </form>
 
 {% if musical_info %}

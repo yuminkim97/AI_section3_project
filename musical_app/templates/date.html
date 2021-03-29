@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Date Index
+Search by Date Page
 {% endblock %}
 
 {% block lead %}
-날짜 별 뮤지컬 정보를 조회
+Search the list of musicals available on the selected date
 {% endblock %}
 
 {% block main_body %}
-<form method="POST" action="/date">
-  <input name="date" style="margin-bottom:10px" class="form-control" type="text" placeholder="YYYY-MM-DD">
-  <input type="submit" class="btn btn-primary" value="Search" />
-</form>
+<div class="container" style="width: 500px;">
+  <form method="POST" action="/date">
+    <div class="input-group mb-3">
+      <input name="date" style="margin-bottom:10px" class="form-control" type="text" placeholder="YYYY-MM-DD">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" style="margin-bottom:10px" type="submit">Search</button>
+      </div>
+    </div>
+    <!-- <input name="date" style="margin-bottom:10px" class="form-control" type="text" placeholder="YYYY-MM-DD">
+    <input type="submit" class="btn btn-primary" value="Search" /> -->
+  </form>
+</div>
 
 
 {% if musical_info_list %}

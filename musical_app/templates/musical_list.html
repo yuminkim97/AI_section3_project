@@ -1,27 +1,48 @@
 {% extends 'base.html' %}
 
 {% block title  %}
-Musical List on the select theater
+Search by Theater Page
 {% endblock  %}
 
+{% block lead %}
+Search the list of musicals available at the selected theater
+{% endblock %}
+
 {% block main_body  %}
-<form method="POST" action="/musical">
-  <div class="form-group">
-    <label for="exampleFormControlSelect">Choose Theater</label>
-    <select name="theater" class="form-control" id="exampleFormControlSelect">
-      {% for theater in theaters %}
-      <option value={{theater.id}}>{{theater.name}}</option>
-      {% endfor %}
-    </select>
+<div class="container" style="width: 500px;">
+  <form method="POST" action="/musical">
+    <div class="input-group mb-3">
+      <select name="theater" class="custom-select">
+        {% for theater in theaters %}
+        <option value={{theater.id}}>{{theater.name}}</option>
+        {% endfor %}
+      </select>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">Search</label>
+      </div>
+    </div>
+  <!-- 
+    <div class="input-group mb-3">
+      <div class="form-group">
+        <label for="exampleFormControlSelect">Choose Theater</label>
+        <select name="theater" class="form-control" id="exampleFormControlSelect">
+          {% for theater in theaters %}
+          <option value={{theater.id}}>{{theater.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </div>
   </div>
-  <input type="submit" class="btn btn-primary" value="Search" />
-</form>
+    <input type="submit" class="btn btn-primary" value="Search" /> -->
+  </form>
+</div>
 
 {% if musical_list %}
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Title</th>
       <th scope="col">Start</th>
       <th scope="col">End</th>
@@ -36,8 +57,7 @@ Musical List on the select theater
   <tbody>
     {% for musical in musical_list %}
     <tr>
-      <th scope="row">{{ musical.id }}</th>
-      <td>{{ musical.title }}</td>
+      <th scope="row">{{ musical.title }}</th>
       <td>{{ musical.start }}</td>
       <td>{{ musical.end }}</td>
       <td>{{ musical.runtime }}</td>
@@ -45,7 +65,7 @@ Musical List on the select theater
       <td>{{ musical.rating }}</td>
       <td>{{ musical.price }}</td>
       <!-- <td>{{ musical.casting }}</td> -->
-      <td>{{ musical.url }}</td>
+      <td><a href={{ musical.url }}>{{ musical.url }}</a></td>
     </tr>
     {% endfor %}
   </tbody>
