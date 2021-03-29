@@ -13,14 +13,13 @@ def index():
 
 @bp.route('/theater')
 def theater_index():
-    theaters = Theater.query.all()
-    theater_list = []
+    theater_list = Theater.query.all()
+    # theater_list = []
 
-    for theater in theaters:
-        theater_list.append({'id':theater.id, 'name':theater.name})
+    # for theater in theaters:
+    #     theater_list.append({'id':theater.id, 'name':theater.name})
 
     return render_template('theater.html', theater_list=theater_list)
-
 
 
 @bp.route('/musical', methods=["GET", "POST"])
