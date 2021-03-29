@@ -26,13 +26,18 @@ def theater_index():
 def musical_index():
     theaters = Theater.query.all()
     musical_list = []
+    theater_name = ''
 
     if request.method == "POST":
         theater_id = request.form.get('theater')
         
         musical_list = Musical.query.filter_by(theater_id=theater_id).all()
+        select_theater = Theater.query.filter_by(id=theater_id).first()
+        theater_name = select_theater.name
+        for musical in musical_list :
+            print(musical.start)
     
-    return render_template('musical_list.html', theaters=theaters, musical_list=musical_list)
+    return render_template('musical_list.html', theaters=theaters, theater_name=theater_name, musical_list=musical_list)
 
 
 @bp.route('/date', methods=["GET", "POST"])
@@ -62,7 +67,7 @@ def date_index():
 @bp.route('/recommend', methods=["GET", "POST"])
 def recommend_index():
     musical_info = {}
-    user_info = {}
+    # user_info = {}
     
     if request.method == "POST" :
         try :
@@ -70,7 +75,7 @@ def recommend_index():
                 'gender':request.form.get('gender'),
                 'age':request.form.get('age'),
                 'experience':request.form.get('experience'),
-                'accompany':request.form.get('accompany'),
+                'accompany':request.form.get('accompany')
             }
 
         except :
@@ -80,4 +85,4 @@ def recommend_index():
 
         musical_info = musical_api.get_musical_info(res_no)
             
-    return render_template('recommend.html', user_info=user_info, musical_info=musical_info)
+    return render_template('recommend.html', musical_info=musical_info)

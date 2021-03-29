@@ -9,14 +9,6 @@ Recommend musical performance by analyze your information
 {% endblock %}
 
 {% block main_body %}
-<!-- <form method="POST" action="/recommend">
-  <input name="gender" style="margin-bottom:10px" class="form-control" type="text" placeholder="남자:1, 여자:2">
-  <input name="age" style="margin-bottom:10px" class="form-control" type="text" placeholder="나이">
-  <input name="experience" style="margin-bottom:10px" class="form-control" type="text" placeholder="뮤지컬 관람 경험 여부) No:0, Yes:1">
-  <input name="accompany" style="margin-bottom:10px" class="form-control" type="text" placeholder="동행) 0:혼자, 1:친구와 함께, 2:연인과 함께, 3:가족과 함께">
-  <input type="submit" class="btn btn-primary" value="Search" />
-</form> -->
-
 <form method="POST" action="/recommend">
   <div class="input-group mb-3">
     <div class="container">
@@ -59,6 +51,7 @@ Recommend musical performance by analyze your information
 
 
 {% if musical_info %}
+<!-- <label style="font-size: 15px;"></label> -->
 <table class="table">
   <thead>
     <tr>

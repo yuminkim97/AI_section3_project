@@ -24,7 +24,8 @@ Search the list of musicals available at the selected theater
   </form>
 </div>
 
-{% if musical_list %}
+{% if musical_list and theater_name %}
+<label style="font-size: 15px;">List of musicals to be performed at {{theater_name}}</label>
 <table class="table">
   <thead>
     <tr>

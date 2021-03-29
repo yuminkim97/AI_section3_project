@@ -14,9 +14,8 @@ def add_theater():
     if theater_name is None :
         return "Needs theater name", 400
 
-    try : 
-        new_musicals = theater_api.get_theater(theater_name)
-    except :
+    new_musicals = theater_api.get_theater(theater_name)
+    if new_musicals==[] : 
         return redirect(url_for('main.theater_index'), code=400)
     
     exist_theater = Theater.query.filter_by(name=theater_name).first()
