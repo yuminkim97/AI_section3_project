@@ -3,7 +3,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 '''
 export FLASK_APP=musical_app
-export DATABASE_URI='postgres://mdlklips:3RV4qozF-rLqMXISM9TCGldcNCKySSBN@john.db.elephantsql.com:5432/mdlklips'
+export DATABASE_URL='postgres://mdlklips:3RV4qozF-rLqMXISM9TCGldcNCKySSBN@john.db.elephantsql.com:5432/mdlklips'
 export FLASK_ENV=development
 '''
 
@@ -12,7 +12,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     # SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URI']
+    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
 class DevelopmentConfig(Config):
     DEVELOPMENT = True
