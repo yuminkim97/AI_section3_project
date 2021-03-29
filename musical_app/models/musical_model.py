@@ -15,7 +15,7 @@ class Musical(db.Model):
     casting = db.Column(db.String)
     url = db.Column(db.String)
 
-    theater_id = db.Column(db.Integer, db.ForeignKey('theater.id'))
+    theater_id = db.Column(db.Integer, db.ForeignKey('theater.id'), nullable=False)
 
     def __repr__(self):
         return f"Musical {self.num}"
