@@ -22,6 +22,7 @@ def theater_index():
     return render_template('theater.html', theater_list=theater_list)
 
 
+
 @bp.route('/musical', methods=["GET", "POST"])
 def musical_index():
     theaters = Theater.query.all()

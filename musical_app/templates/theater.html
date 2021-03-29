@@ -25,10 +25,10 @@ Add or delete theater list
   <tbody>
     {% for theater in theater_list %}
     <tr>
-      <th scope="row">{{ theater.id }}</th>
-      <td>{{ theater.name }}</td>
+      <th scope="row">{{ theater['id'] }}</th>
+      <td>{{ theater['name'] }}</td>
       <td>
-        <a class="btn btn-secondary", href='/api/theater/{{ theater.id }}'>
+        <a class="btn btn-secondary", href="/api/theater/{{ theater['id'] }}">
           Delete
         </a>
       </td>
