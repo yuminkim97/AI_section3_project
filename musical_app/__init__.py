@@ -10,7 +10,7 @@ migrate = Migrate()
 def create_app(config=None):
     app = Flask(__name__) # name = folder 이름
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 
     if app.config["ENV"] == 'production':
         app.config.from_object('config.ProductionConfig')
