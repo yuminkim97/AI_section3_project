@@ -12,16 +12,18 @@ Add or delete a list of theaters of interest
 <div class="container" style="width: 500px;">
   <form method="POST" action="/api/theater">
     <div class="input-group mb-3">
-      <input name="theaterid" style="margin-bottom:10px" class="form-control" type="text" placeholder="Enter theater name">
+      <select name="theatername" class="custom-select">
+        {%for theater_name in theater_name_list %}
+        <option>{{ theater_name }}</option>
+        {% endfor %}
+      </select>
       <div class="input-group-append">
         <button class="btn btn-outline-secondary" style="margin-bottom:10px" type="submit">Add</button>
       </div>
     </div>
-    <!-- <input name="theaterid" style="margin-bottom:10px" class="form-control" type="text" placeholder="Enter theater name">
-    <input type="submit" class="btn btn-primary" value="Add" /> -->
   </form>
 
-  {% if theater_list %}
+  {% if saved_theaters %}
 
   <table class="table" style="text-align: center;">
     <thead>
@@ -32,12 +34,11 @@ Add or delete a list of theaters of interest
       </tr>
     </thead>
     <tbody>
-      {% for theater in theater_list %}
+      {% for saved_theater in saved_theaters %}
       <tr>
-        <!-- <th scope="row">{{ theater.id }}</th> -->
-        <th scope="row">{{ theater.name }}</td>
+        <th scope="row">{{ saved_theater.name }}</td>
         <td>
-          <a class="btn btn-outline-secondary", href="/api/theater/{{ theater.id }}">
+          <a class="btn btn-outline-secondary", href="/api/theater/{{ saved_theater.id }}">
             Delete
           </a>
         </td>

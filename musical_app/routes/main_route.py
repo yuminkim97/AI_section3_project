@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request
 from musical_app.utils import main_funcs
 from musical_app.models.theater_model import db, Theater
 from musical_app.models.musical_model import Musical
-from musical_app.services import date_api, musical_api
+from musical_app.services import date_api, musical_api, theater_api
 import datetime
 
 bp = Blueprint('main', __name__)
@@ -13,13 +13,10 @@ def index():
 
 @bp.route('/theater')
 def theater_index():
-    theater_list = Theater.query.all()
-    # theater_list = []
+    saved_theaters = Theater.query.all()
+    theater_name_list = theater_api.get_theater_list()
 
-    # for theater in theaters:
-    #     theater_list.append({'id':theater.id, 'name':theater.name})
-
-    return render_template('theater.html', theater_list=theater_list)
+    return render_template('theater.html', saved_theaters=saved_theaters, theater_name_list=theater_name_list)
 
 
 @bp.route('/musical', methods=["GET", "POST"])
@@ -51,7 +48,8 @@ def date_index():
         try :
             chosen_date = datetime.datetime.strptime(chosen_date, '%Y-%m-%d').date()
         except :
-            return "Need proper date form", 400
+            error_message = 'Need proper date form'
+            return render_template('date.html', error_message=error_message, musical_info_list=musical_info_list, search_text=search_text)
 
         musical_list = date_api.search_by_date(chosen_date)
 

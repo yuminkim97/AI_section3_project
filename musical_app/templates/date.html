@@ -17,6 +17,11 @@ Search the list of musicals available on the selected date
         <button class="btn btn-outline-secondary" style="margin-bottom:10px" type="submit">Search</button>
       </div>
     </div>
+    {% if error_message %}
+    <div>
+      <span class="balloon">{{error_message}}</span>
+    </div>
+    {% endif %}
     <!-- <input name="date" style="margin-bottom:10px" class="form-control" type="text" placeholder="YYYY-MM-DD">
     <input type="submit" class="btn btn-primary" value="Search" /> -->
   </form>

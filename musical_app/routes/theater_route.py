@@ -9,12 +9,12 @@ bp = Blueprint('theater', __name__)
 
 @bp.route('/theater', methods=['POST'])
 def add_theater():
-    theater_name = request.form.get("theaterid")
+    theater_name = request.form.get("theatername")
 
     if theater_name is None :
         return "Needs theater name", 400
 
-    new_musicals = theater_api.get_theater(theater_name)
+    new_musicals = theater_api.get_theater_musical(theater_name)
     if new_musicals==[] : 
         return redirect(url_for('main.theater_index'), code=400)
     
